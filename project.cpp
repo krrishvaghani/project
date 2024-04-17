@@ -30,8 +30,47 @@ public:
         } while (player != 'r' && player != 'p' && player != 's');
         return player;
     }
+char getcomputerchoice() {
+        srand(time(0));
+        int num = rand() % 3 + 1;   //random function choose one number in range of (0,1,2)
+        switch (num) {
+            case 1:
+                return 'r';
+            case 2:
+                return 'p';
+            case 3:
+                return 's';
+        }
+        return 0;
+    }
+
+    void showChoice(char choice) {
+        switch (choice) {
+            case 'r':
+                cout << "Rock\n";
+                break;
+            case 'p':
+                cout << "Paper\n";
+                break;
+            case 's':
+                cout << "Scissors\n";
+                break;
+        }
+    }
+
 };
     int main()
     {
+            rps p;
+    bool play = true;
+    while (play) {
+        for (int i = 0; i < 3; i++) {
+            char playerChoice = p.getuserchoice();
+            cout << "Your Choice : ";
+            p.showChoice(playerChoice);
+                char computerChoice = p.getcomputerchoice();
+            cout << "Computer's Choice : ";
+            p.showChoice(computerChoice);
+        }              
         return 0;
     }
