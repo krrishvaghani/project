@@ -32,7 +32,7 @@ public:
     }
 char getcomputerchoice() {
         srand(time(0));
-        int num = rand() % 3 + 1;   //random function choose one number in range of (0,1,2)
+        int num = rand() % 3 + 1;   
         switch (num) {
             case 1:
                 return 'r';
@@ -57,13 +57,49 @@ char getcomputerchoice() {
                 break;
         }
     }
-
+void chooseWinner(char player, char computer) {
+        switch (player) {
+            case 'r':
+                if (computer == 'r') {
+                    cout << "It's a tie!\n";
+                } else if (computer == 'p') {
+                    cout << "You lose!\n";
+                    computerScore++;
+                } else {
+                    cout << "You win!\n";
+                    playerScore++;
+                }
+                break;
+            case 'p':
+                if (computer == 'r') {
+                    cout << "You win!\n";
+                    playerScore++;
+                } else if (computer == 'p') {
+                    cout << "It's a tie!\n";
+                } else {
+                    cout << "You lose!\n";
+                    computerScore++;
+                }
+                break;
+            case 's':
+                if (computer == 'r') {
+                    cout << "You lose!\n";
+                    computerScore++;
+                } else if (computer == 'p') {
+                    cout << "You win!\n";
+                    playerScore++;
+                } else {
+                    cout << "It's a tie!\n";
+                }
+                break;
+        }
+    }
 };
     int main()
     {
             rps p;
     bool play = true;
-    while (play) {
+    while (play)  {
         for (int i = 0; i < 3; i++) {
             char playerChoice = p.getuserchoice();
             cout << "Your Choice : ";
@@ -71,6 +107,9 @@ char getcomputerchoice() {
                 char computerChoice = p.getcomputerchoice();
             cout << "Computer's Choice : ";
             p.showChoice(computerChoice);
-        }              
+                
+            p.chooseWinner(playerChoice, computerChoice);
+        }   
+    }
         return 0;
     }
