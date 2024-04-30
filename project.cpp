@@ -94,6 +94,17 @@ void chooseWinner(char player, char computer) {
                 break;
         }
     }
+    void showScore() {
+        cout << "Player Score: " << playerScore << endl;
+        cout << "Computer Score: " << computerScore << endl;
+    }
+
+    bool playAgain() {
+        char choice;
+        cout << "Do you want to play again? (Y/N): ";
+        cin >> choice;
+        return (choice == 'Y' || choice == 'y');
+    }
 };
     int main()
     {
@@ -109,7 +120,12 @@ void chooseWinner(char player, char computer) {
             p.showChoice(computerChoice);
                 
             p.chooseWinner(playerChoice, computerChoice);
+            p.showScore();
         }   
+        cout << "********************* Game Over ***********************" << endl;
+
+        cout << "Thanks for playing!"<<endl;
+        play = p.playAgain();
     }
         return 0;
     }
